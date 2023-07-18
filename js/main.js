@@ -110,15 +110,16 @@ posts.forEach((element, i) => {
     let counter = posts[i].likes;
     let btnLikes = document.querySelectorAll(".js-like-button");
     btnLikes[i].addEventListener("click", function(){
+
         if( likesActive === false){
-            
+             // ++ likes and print       
             likesActive = true;
             btnLikes[i].classList.add("like-button--liked");
             counter++;
             counterNumbDoc[i].innerHTML = counter;
             
         } else {
-            
+            // -- likes and print
             likesActive = false;
             btnLikes[i].classList.remove("like-button--liked");
             counter--;
