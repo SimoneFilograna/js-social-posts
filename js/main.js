@@ -71,6 +71,8 @@ for(let i = 0; i < posts.length; i++){
     //generate div
     const singlePost = document.createElement("div");
     singlePost.classList.add("post");
+    
+
     //printing
     singlePost.innerHTML =
         `<div class="post__header">
@@ -114,11 +116,15 @@ posts.forEach((element, i) => {
     btnLikes[i].addEventListener("click", function(){
 
         if( likesActive === false){
+
              // ++ likes and print       
             likesActive = true;
             btnLikes[i].classList.add("like-button--liked");
             counter++;
             counterNumbDoc[i].innerHTML = counter;
+
+            //push in new array
+
             postLiked.push(posts[i].id);
             console.log(postLiked);
             
