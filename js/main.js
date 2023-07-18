@@ -57,49 +57,82 @@ const posts = [
 ];
 
 const postContainer = document.querySelector(".posts-list");
-
+let likesActive = false;
 
 //generate a virtual div in a cicle for each obj
 
 for(let i = 0; i < posts.length; i++){
-    //obj destructuration
-    const singObj = posts[i]
-    const {id, content, media, author, likes, created} = singObj;
-    const { name, image} = author;
     
-
+    //obj destructuration
+    let singObj = posts[i]
+    let {id, content, media, author, likes, created} = singObj;
+    let { name, image} = author;
+    
     //generate div
     const singlePost = document.createElement("div");
     singlePost.classList.add("post");
-    postContainer.append(singlePost);
-
-    singlePost.innerHTML = `<div class="post__header">
-        <div class="post-meta">                    
-            <div class="post-meta__icon">
-                <img class="profile-pic" src="${image}" alt="${name}">                    
+    //printing
+    singlePost.innerHTML =
+        `<div class="post__header">
+            <div class="post-meta">                    
+                <div class="post-meta__icon">
+                    <img class="profile-pic" src="${image}" alt="${name}">                    
+                </div>
+                <div class="post-meta__data">
+                    <div class="post-meta__author">${name}</div>
+                    <div class="post-meta__time">${created}</div>
+                </div>                    
             </div>
-            <div class="post-meta__data">
-                <div class="post-meta__author">${name}</div>
-                <div class="post-meta__time">${created}</div>
-            </div>                    
         </div>
-    </div>
-    <div class="post__text">${content}</div>
-    <div class="post__image">
-        <img src="${media}" alt="">
-    </div>
-    <div class="post__footer">
-        <div class="likes js-likes">
-            <div class="likes__cta">
-                <a class="like-button  js-like-button" href="#" data-postid="1">
-                    <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
-                    <span class="like-button__label">Mi Piace</span>
-                </a>
-            </div>
-            <div class="likes__counter">
-                Piace a <b id="like-counter-1" class="js-likes-counter">${likes}</b> persone
-            </div>
-        </div> 
-    </div>`
+        <div class="post__text">${content}</div>
+        <div class="post__image">
+            <img src="${media}" alt="">
+        </div>
+        <div class="post__footer">
+            <div class="likes js-likes">
+                <div class="likes__cta">
+                    <a class="like-button  js-like-button" href="#" data-postid="1">
+                        <i class="like-button__icon fas fa-thumbs-up" aria-hidden="true"></i>
+                        <span class="like-button__label">Mi Piace</span>
+                    </a>
+                </div>
+                <div class="likes__counter">
+                    Piace a <b id="like-counter-1" class="js-likes-counter">${likes}</b> persone
+                </div>
+            </div> 
+        </div>`
 
-}
+        postContainer.append(singlePost);                           
+};
+
+posts.forEach((element, i) => {
+    let counter = posts[i].likes;
+    let btnLikes = document.querySelectorAll(".js-like-button");
+    btnLikes[i].addEventListener("click", function(){
+        if( likesActive === false){
+            likesActive = true;
+            btnLikes[i].classList.add("like-button--liked");
+            counter++;
+            console.log(counter)
+        } else {
+            likesActive = false;
+            btnLikes[i].classList.remove("like-button--liked");
+            counter--;
+            console.log(counter)
+        }
+    
+        
+    })
+});
+
+
+
+
+
+
+
+
+
+
+
+
