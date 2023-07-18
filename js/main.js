@@ -105,6 +105,8 @@ for(let i = 0; i < posts.length; i++){
         postContainer.append(singlePost);                           
 };
 
+let postLiked = [];
+
 posts.forEach((element, i) => {
     let counterNumbDoc = document.querySelectorAll(".js-likes-counter");
     let counter = posts[i].likes;
@@ -117,6 +119,8 @@ posts.forEach((element, i) => {
             btnLikes[i].classList.add("like-button--liked");
             counter++;
             counterNumbDoc[i].innerHTML = counter;
+            postLiked.push(posts[i].id);
+            console.log(postLiked);
             
         } else {
             // -- likes and print
