@@ -106,22 +106,24 @@ for(let i = 0; i < posts.length; i++){
 };
 
 posts.forEach((element, i) => {
+    let counterNumbDoc = document.querySelectorAll(".js-likes-counter");
     let counter = posts[i].likes;
     let btnLikes = document.querySelectorAll(".js-like-button");
     btnLikes[i].addEventListener("click", function(){
         if( likesActive === false){
+            
             likesActive = true;
             btnLikes[i].classList.add("like-button--liked");
             counter++;
-            console.log(counter)
+            counterNumbDoc[i].innerHTML = counter;
+            
         } else {
+            
             likesActive = false;
             btnLikes[i].classList.remove("like-button--liked");
             counter--;
-            console.log(counter)
-        }
-    
-        
+            counterNumbDoc[i].innerHTML = counter;
+        }            
     })
 });
 
